@@ -121,3 +121,16 @@ function treeMaxDepth(root) {
     if(!root) return 0;
     return Math.max(treeMaxDepth(root.left), treeMaxDepth(root.right)) + 1;
 }
+
+function visibleTreeNode(root) {
+    return dfs(root, Number.NEGATIVE_INFINITY);
+};
+
+function dfs(root, hi) {
+    if(!root) return 0;
+    let count = 0;
+    if(root.val > hi) count++;
+    count += dfs(root.right, Math.max(root.val, hi));
+    count += dfs(root.left, Math.max(root.val, hi));
+    return count;
+};
