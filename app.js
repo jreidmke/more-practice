@@ -241,3 +241,33 @@ function dfs(letters, path, res, used) {
         used[i] = false;
     };
 };
+
+const KEYBOARD = {
+    '2': 'abc',
+    '3': 'def',
+    '4': 'ghi',
+    '5': 'jkl',
+    '6': 'mno',
+    '7': 'pqrs',
+    '8': 'tuv',
+    '9': 'wxyz',
+  };
+  
+  function letterCombinationsOfPhoneNumber(digits) {
+      let res = [];
+      permutations(digits, [], res);
+      return res;
+  };
+  
+  function permutations(digits, path, res) {
+      if(digits.length === path.length) {
+          res.push(path.join(''));
+          return;
+      };
+      let currChar = digits.charAt(path.length);
+      for(let c of KEYBOARD[currChar]) {
+          path.push(c);
+          permutations(digits, path, res);
+          path.pop();
+      };
+  };
