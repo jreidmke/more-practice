@@ -134,3 +134,13 @@ function dfs(root, hi) {
     count += dfs(root.left, Math.max(root.val, hi));
     return count;
 };
+
+function validBst(root) {
+    return dfs(root, Number.NEGATIVE_INFINITY, Number.POSTIVE_INFINITY);
+};
+
+function dfs(root, low, hi) {
+    if(!root) return true;
+    if(root.val < low || root.val > hi) return false;
+    return dfs(root.left, low, root.val) && dfs(root.right, root.val, hi);
+};
