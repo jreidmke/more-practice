@@ -220,3 +220,24 @@ function dfs(root, path, res) {
         };
     };
 };
+
+function permutations(letters) {
+    let res = [];
+    dfs(letters, [], res, []);
+    return res;
+};
+
+function dfs(letters, path, res, used) {
+    if(letters.length === path.length) {
+        res.push(Array.from(path));
+        return;
+    };
+    for(let i = 0; i < letters.length; i++) {
+        if(used[i]) continue;
+        path.push(letters[i]);
+        used[i] = true;
+        dfs(letters, path, res, used);
+        path.pop(letters[i]);
+        used[i] = false;
+    };
+};
