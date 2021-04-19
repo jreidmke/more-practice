@@ -67,3 +67,19 @@ function findFirstOccurrence(arr, target) {
     };
     return idx;
 }
+
+function squareRoot(n) {
+    let left = 0;
+    let right = n;
+    let sq;
+    while(left <= right) {
+        let mid = Math.floor((left + right) / 2);
+        if(mid ** 2 <= n) {
+            sq = mid;
+            left = mid + 1;
+        } else {
+            right = mid - 1;    
+        };
+    };
+    return sq;
+}
