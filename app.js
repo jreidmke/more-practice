@@ -144,3 +144,44 @@ function dfs(root, low, hi) {
     if(root.val < low || root.val > hi) return false;
     return dfs(root.left, low, root.val) && dfs(root.right, root.val, hi);
 };
+
+function serialize(root) {
+    let res = [];
+    dfsS(root, res);
+    return res.join(' ');
+};
+
+function dfsS(root, res) {
+    //push null
+    if(!root) {
+        res.push('x');
+        return;
+    };
+    
+    //push val
+    res.push(root.val);
+    dfsS(root.left, res);
+    dfsS(root.right, res);
+};
+
+function deserialize(s) {
+    return dfsD(s.split(' '));
+};
+
+function dfsD(arr) {
+    let val = arr.shift();
+    if(val === 'x') return;
+    let node = new Node(val);
+    node.left = dfsD(arr);
+    node.right = dfsD(arr);
+    return node;
+};
+
+function build_tree(nodes) {
+    let val = nodes.next().value;
+    if (!val || val === 'x') return;
+    let cur = new Node(parseInt(val, 10));
+    cur.left = build_tree(nodes);
+    cur.right = build_tree(nodes);
+    return cur;
+}
