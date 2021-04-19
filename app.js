@@ -271,3 +271,21 @@ const KEYBOARD = {
           path.pop();
       };
   };
+
+function wordBreak(s, words) {
+    return dfs(s, words, 0, {});
+};
+
+function dfs(s, words, idx, memo) {
+    if(s.length === idx) return true;
+    if(idx in memo) return memo[idx];
+    
+    let check = false;
+    for(let w of words) {
+        if(s.slice(idx).startsWith(w)) {
+            if(dfs(s, words, idx + w.length, memo)) check = true;    
+        };
+    };
+    memo[idx] = check;
+    return check;
+};
