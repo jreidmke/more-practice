@@ -196,3 +196,27 @@ function lca(root, node1, node2) {
         return root;    
     };
 };
+
+function ternary_tree_paths(root) {
+    let res = [];
+    if(root) dfs(root, [], res);
+    return res;
+};
+
+function dfs(root, path, res) {
+    //push to res
+    if(root.children.every(c => !c)) {
+        path.push(root.val);
+        res.push(path.join('->'));
+        path.pop();
+        return;
+    };
+    //push to path
+    for(let c of root.children) {
+        if(c) {            
+            path.push(root.val);
+            dfs(c, path, res);
+            path.pop();
+        };
+    };
+};
