@@ -289,3 +289,157 @@ function dfs(s, words, idx, memo) {
     memo[idx] = check;
     return check;
 };
+
+function decodeWays(digits) {
+    return decoder(digits, 0);
+};
+
+function decoder(digits, idx) {
+    if(digits.length === idx) return 1;
+    let count = 0;
+    let remaining = digits.slice(idx);
+    for(let l of LETTERS) {
+        if(remaining.startsWith(l)) {
+            count += decoder(digits, idx + l.length);    
+        };
+    };
+    return count;
+};
+
+function partition(s) {
+    let res = [];
+    permutations(s, [], res);
+    return res;
+};
+
+function isPalindrome(s) {
+    let left = 0;
+    let right = s.length - 1;
+    while(left < right) {
+        if(s[left] !== s[right]) return false;
+        left++;
+        right--;
+    };
+    return true;
+};
+
+function permutations(s, path, res) {
+    if(!s.length) {
+        res.push(Array.from(path));
+        return;
+    };
+    for(let i = 1; i <= s.length; i++) {
+        let substr = s.slice(0, i);
+        if(isPalindrome(substr)) {
+            path.push(substr);
+            permutations(s.slice(i), path, res);
+            path.pop();
+        };
+    };
+};
+
+function combinationSum(candidates, target) {
+    let res = [];
+    permutations(candidates, target, [], res, 0);
+    return res;
+};
+
+function permutations(candidates, remaining, path, res, idx) {
+    if(!remaining) {
+        res.push(Array.from(path));
+        return;
+    };
+    for(let i = idx; i < candidates.length; i++) {
+        let n = candidates[i];
+        if(remaining - n < 0) continue;
+        path.push(n);
+        permutations(candidates, remaining - n, path, res, i);
+        path.pop();
+    };
+}; 
+
+function subsets(nums) {
+    let res = [];
+    permutations(nums, [], res, 0);
+    return res;
+};
+
+function permutations(nums, path, res, idx) {
+    if(nums.length === idx) {
+        res.push(Array.from(path));
+        return;
+    };
+    permutations(nums, [...path, nums[idx]], res, idx + 1);
+    permutations(nums, [...path], res, idx + 1);
+};
+
+function levelOrderTraversal(root) {
+    let res = [];
+    let que = [root];
+    while(que.length) {
+        let n = que.length;
+        let path = [];
+        for(let i = 0; i < n; i++) {
+            let node = que.shift();
+            path.push(node.val);
+            for(let c of [node.left, node.right]) {
+                if(c) que.push(c);    
+            };
+        };
+        res.push(path);
+    };
+    return res;
+}
+
+function zigZagTraversal(root) {
+    let res = [];
+    let que = [root];
+    let leftToRight = true;
+    while(que.length) {
+        let n = que.length;
+        let path = [];
+        for(let i = 0; i < n; i++) {
+            const node = que.shift();
+            path.push(node.val);
+            for(let c of [node.left, node.right]) {
+                if(c) que.push(c);    
+            };
+        };
+        if(!leftToRight) path.reverse();
+        res.push(path);
+        leftToRight = !leftToRight;
+    };
+    return res;
+}
+
+function binary_tree_right_side_view(node) {
+    let res = [];
+    let q = [node];
+    while(q.length) {
+        const n = q.length;
+        res.push(q[0]);
+        for(let i = 0; i < n; i++) {
+            const newNode = q.shift();
+            for(let c of [newNode.right, newNode.left]) {
+                if(c) q.push(c);
+            }
+        }
+    };
+    return res;
+};
+
+function min_depth(root) {
+    let que = [root];
+    let depth = -1;
+    while(que.length) {
+        depth++;
+        let n = que.length;
+        for(let i = 0; i < n; i++) {
+            let node = que.shift();
+            if(!node.left && !node.right) return depth;
+            for(let c of [node.left, node.right]) {
+                if(c) que.push(c);
+            }
+        }
+    }
+}
