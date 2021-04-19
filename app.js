@@ -116,3 +116,8 @@ function peakOfMountainArray(arr) {
     };
     return idx;
 }
+
+function treeMaxDepth(root) {
+    if(!root) return 0;
+    return Math.max(treeMaxDepth(root.left), treeMaxDepth(root.right)) + 1;
+}
