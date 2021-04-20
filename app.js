@@ -443,3 +443,16 @@ function min_depth(root) {
         }
     }
 }
+
+function bfsGraph(root) {
+    let que = [root];
+    let visited = new Set();
+    while(que.length) {
+        const node = que.shift();
+        for(const n of node.neighbors) {
+            if(visited.has(n)) continue;
+            que.push(n);
+            visited.add(n);
+        }
+    }
+} 
