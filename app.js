@@ -455,4 +455,22 @@ function bfsGraph(root) {
             visited.add(n);
         }
     }
-} 
+};
+
+function bfsLevelTraversal(root) {
+    let que = [root];
+    let visited = new Set();
+    let level = 0;
+    while(que.length) {
+        const n = que.length;
+        for(let i = 0; i < n; i++) {
+            const node = que.shift();
+            for(const n of node.neighbors) {
+                if(visited.has(n)) continue;
+                que.push(n);
+                visited.add(n);
+            }
+        };
+        level++;
+    }
+}
