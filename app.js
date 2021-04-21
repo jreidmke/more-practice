@@ -506,3 +506,16 @@ function moveZeros(arr) {
     };
     return arr;
 }
+
+function twoSum(arr, target) {
+    let slow = 0;
+    let fast = arr.length - 1;
+    while(slow < fast) {
+        let sum = arr[slow] + arr[fast];
+        if(sum > target) right--;
+        else if(sum < target) left++;
+        else return [left, right]
+    };
+    return -1;
+};
+
