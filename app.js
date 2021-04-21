@@ -535,3 +535,31 @@ function validPalindrome(s) {
     };
     return true;
 }
+
+function rainwater(elevations) {
+    let n = elevations.length;
+    const leftWalls = Array(n).fill(0);
+    const rightWalls = Array(n).fill(0);
+
+    let leftMaxWall = 0;
+    for(let i = 0; i < n; i++) {
+        leftWalls[i] = leftMaxWall;
+        leftMaxWall = Math.max(elevations[i], leftMaxWall);
+    };
+
+    let rightMaxWall = 0;
+    for(let i = n - 1; i >= 0; i--) {
+        rightWalls[i] = rightMaxWall;
+        rightMaxWall = Math.max(elevations[i], rightMaxWall);
+    };
+
+    let totalWater = 0;
+    for(let i = 0; i < n; i++) {
+        const elevation = elevations[i];
+        const lowestWall = Math.min(leftWalls[i], rightWalls[i]);
+        if(lowestWall > elevation) {
+            totalWater += lowestWall - elevation;
+        };
+    };
+    return totalWater;
+}
