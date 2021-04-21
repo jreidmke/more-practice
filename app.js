@@ -563,3 +563,22 @@ function rainwater(elevations) {
     };
     return totalWater;
 }
+
+function longestSubstringWithoutRepeatingCharacters(s) {
+    const n = s.length;
+    let left = 0;
+    let right = 0;
+    let longest = 0;
+    const seen = new Set();
+    while(right < n) {
+        if(!seen.has(s.charAt(right))) {
+            seen.add(s.charAt(right));
+            right++;
+        } else {
+            seen.delete(s.charAt(left));
+            left++;
+        };
+        longest = Math.max(longest, right - left);
+    };
+    return longest;
+}
