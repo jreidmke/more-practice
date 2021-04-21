@@ -485,3 +485,15 @@ function removeDuplicates(arr) {
     };
     return arr.slice(0, slow + 1);
 }
+
+function middleOfLinkedList(head) {
+    let slow = head;
+    let fast = head;
+    while(fast && fast.next) {
+        fast = fast.next.next;
+        slow = slow.next;
+    };
+    return slow;
+};
+
+function
