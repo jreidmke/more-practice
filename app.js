@@ -519,3 +519,19 @@ function twoSum(arr, target) {
     return -1;
 };
 
+function isAlphaNumeric(c) {
+    return /^[a-zA-Z0-9]*$/.test(c);
+};
+
+function validPalindrome(s) {
+    let left = 0;
+    let right = s.length - 1;
+    while(left < right) {
+        while(left < right && !isAlphaNumeric(s.charAt(left))) left++;
+        while(left < right && !isAlphaNumeric(s.charAt(right))) right--;
+        if(s[left].toLowerCase() !== s[right].toLowerCase()) return false;
+        left++;
+        right--;
+    };
+    return true;
+}
