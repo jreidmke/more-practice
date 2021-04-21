@@ -496,4 +496,13 @@ function middleOfLinkedList(head) {
     return slow;
 };
 
-function
+function moveZeros(arr) {
+    let slow = 0;
+    for(let fast = 0; fast < arr.length; fast++) {
+        if(arr[fast]) {
+            [arr[slow], arr[fast]] = [arr[fast], arr[slow]];
+            slow++;
+        };
+    };
+    return arr;
+}
