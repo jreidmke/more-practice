@@ -632,3 +632,37 @@ function helper(nums, k) {
     nums.pop();
     return helper(nums, k - 1);
 }
+
+function oddEvenList(head) {
+    if(!head) return [];
+    let odd = head;
+    let even = head.next;
+    let evenHead = even;
+    while(even && even.next) {
+        odd.next = even.next;
+        odd = odd.next;
+        even.next = odd.next;
+        even = even.next;
+    };
+    odd.next = evenHead;
+    return head;
+};
+
+function kthSmallest(matrix, k) {
+    let n = matrix.length;
+    let low = matrix[0][0];
+    let hi = matrix[n-1][matrix[0].length - 1] + 1;
+    while(low < hi) {
+        let mid = low + Math.floor((hi - low) / 2);
+        let count = 0;
+        for(let i = 0; i < n; i++) {
+            for(let j = 0; j < matrix.length; j++) {
+                if(matrix[i][j] <= mid) count++;
+                else break;
+            };
+        };
+        if(count < k) low = mid + 1;
+        else hi = mid;
+    };
+    return low;
+}
