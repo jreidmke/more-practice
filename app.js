@@ -621,3 +621,14 @@ var kthSmallest = function(root, k) {
     _kthSmallest(root);
     return result;
 };
+
+var findKthLargest = function(nums, k) {
+    nums = nums.sort((a, b) => a - b);
+    return helper(nums, k);
+};
+
+function helper(nums, k) {
+    if(k === 1) return nums.pop();
+    nums.pop();
+    return helper(nums, k - 1);
+}
