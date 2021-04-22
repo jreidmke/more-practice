@@ -592,3 +592,16 @@ var hasCycle = function(head) {
     };
     return false;
 };
+
+function reverseLinkedList(head) {
+    let prev = null;
+    let curr = head;
+    let next = head;
+    while(curr) {
+        next = next.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+    };
+    return prev
+}
