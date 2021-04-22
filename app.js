@@ -604,4 +604,20 @@ function reverseLinkedList(head) {
         curr = next;
     };
     return prev
-}
+};
+
+var kthSmallest = function(root, k) {
+    let result = null;
+    function _kthSmallest(node) {
+        if (!node) return;
+        _kthSmallest(node.left);
+        k--;
+        if (k === 0) {
+            result = node.val;
+            return;
+        }
+        _kthSmallest(node.right);
+    }
+    _kthSmallest(root);
+    return result;
+};
