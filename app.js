@@ -581,4 +581,14 @@ function longestSubstringWithoutRepeatingCharacters(s) {
         longest = Math.max(longest, right - left);
     };
     return longest;
-}
+};
+
+var hasCycle = function(head) {
+    if(!head) return false;
+    while(head && head.next) {
+        if(head.val==='x') return true;
+        head.val = 'x'
+        head = head.next;
+    };
+    return false;
+};
