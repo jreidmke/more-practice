@@ -651,12 +651,12 @@ function oddEvenList(head) {
 function kthSmallest(matrix, k) {
     let n = matrix.length;
     let low = matrix[0][0];
-    let hi = matrix[n-1][matrix[0].length - 1] + 1;
+    let hi = matrix[n-1][n - 1] + 1;
     while(low < hi) {
         let mid = low + Math.floor((hi - low) / 2);
         let count = 0;
         for(let i = 0; i < n; i++) {
-            for(let j = 0; j < matrix.length; j++) {
+            for(let j = 0; j < n; j++) {
                 if(matrix[i][j] <= mid) count++;
                 else break;
             };
@@ -666,3 +666,14 @@ function kthSmallest(matrix, k) {
     };
     return low;
 }
+
+function reverseEachWord(arr, newArr=[]) {
+    if(!arr.length) return newArr;
+    let word = arr[0];
+    let str = '';
+    for(let i = word.length - 1; i >= 0; i--) {
+        str += word[i]
+    };
+    newArr.push(str);
+    return reverseEachWord(arr.slice(1), newArr);
+};
