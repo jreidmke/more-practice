@@ -732,3 +732,4 @@ var searchMatrix = function(matrix, target) {
    
    return hasTarget(0, rows - 1, 0, cols - 1);
 }
+
