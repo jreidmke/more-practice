@@ -688,3 +688,21 @@ function needleInHaystack(haystack, needle) {
     };
     return count;
 };
+
+var generateParenthesis = function(n) {
+    let res = [];
+    dfs(n, n, [], res);
+    return res;
+};
+
+function dfs(l, r, path, res) {
+    if(l > r) return;
+    
+    if(!l && !r) {
+        res.push(path.join(''));
+        return;
+    };
+    
+    if(l) dfs(l - 1, r, [...path, '('], res);
+    if(r) dfs(l, r - 1, [...path, ')'], res);
+}
