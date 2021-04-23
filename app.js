@@ -706,3 +706,29 @@ function dfs(l, r, path, res) {
     if(l) dfs(l - 1, r, [...path, '('], res);
     if(r) dfs(l, r - 1, [...path, ')'], res);
 }
+
+var searchMatrix = function(matrix, target) {
+    if(!matrix || !matrix.length) return false;
+   
+   const rows = matrix.length;
+   const cols = matrix[0].length;
+   
+   function hasTarget(startRow, endRow, startCol, endCol) {
+       if(startRow > endRow || startCol > endCol) return false;
+       
+       const middleRow = Math.floor((endRow - startRow) / 2) + startRow;
+       const middleCol = Math.floor((endCol - startCol) / 2) + startCol;
+       
+       if(matrix[middleRow][middleCol] === target) return true;
+       
+       if (matrix[middleRow][middleCol] < target) {
+           return hasTarget(middleRow + 1, endRow, startCol, endCol) ||
+                  hasTarget(startRow, middleRow, middleCol + 1, endCol);
+       } else {
+           return hasTarget(startRow, endRow, startCol, middleCol - 1) ||
+                  hasTarget(startRow, middleRow - 1, middleCol, endCol);
+       }
+   }
+   
+   return hasTarget(0, rows - 1, 0, cols - 1);
+}
