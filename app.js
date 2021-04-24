@@ -756,3 +756,14 @@ function coinChange(coins, amt) {
     return count;
 
 }
+
+function searchRange(nums, target) {
+    let left = 0;
+    let right = nums.length - 1;
+    while(left <= right) {
+        while(left < right && nums[left] !== target) left++;
+        while(left< right && nums[right] !== target) right--;
+        return nums[left] === target && nums[right] === target ? [left, right] : [-1, -1]
+    };
+    return [-1, -1]
+}
