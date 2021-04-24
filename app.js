@@ -775,3 +775,8 @@ function rotate(nums, k) {
     };
     return rotate(nums, k - 1);
 };
+
+
+function rotate(nums, k) {
+    return nums.unshift(...nums.splice(nums.length - k % nums.length));
+}
