@@ -733,3 +733,26 @@ var searchMatrix = function(matrix, target) {
    return hasTarget(0, rows - 1, 0, cols - 1);
 }
 
+function coinChange(coins, amt) {
+    let count = Number.POSITIVE_INFINITY;
+
+    function helper(nums, remaining, path, idx) {
+        if(!remaining) {
+            count = Math.min(count, path.length);
+            return;
+        }
+
+        for(let i = idx; i < nums.length; i++) {
+            let n = nums[i];
+            if(remaining - n < 0) continue;
+            path.push(n);
+            helper(nums, remaining - n, path, i);
+            path.pop();
+        }
+    };
+    helper(coins, amt, [], 0);
+
+    if(count === Number.POSITIVE_INFINITY) return -1;
+    return count;
+
+}
