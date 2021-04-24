@@ -766,4 +766,12 @@ function searchRange(nums, target) {
         return nums[left] === target && nums[right] === target ? [left, right] : [-1, -1]
     };
     return [-1, -1]
-}
+};
+
+function rotate(nums, k) {
+    if(!k) return nums;
+    for(let i = nums.length - 1; i > 0; i--) {
+        [nums[i - 1], nums[i]] = [nums[i], nums[i - 1]]
+    };
+    return rotate(nums, k - 1);
+};
