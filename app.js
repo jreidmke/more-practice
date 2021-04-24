@@ -819,3 +819,21 @@ function spiralOrder(matrix) {
     };
     return arr;
 }
+
+
+function maxProduct(nums) {
+    let longest = Number.NEGATIVE_INFINITY;
+
+    function helper(nums, path) {        
+        let left = 0;
+        let right = 0;
+        
+        while(right < nums.length + 1) {
+            longest = Math.max(longest, nums.slice(left, right).reduce((a, b) => a * b));
+            right++   
+        }
+    }
+
+    helper(nums, [1]);
+    return longest;
+}
