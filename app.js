@@ -780,3 +780,42 @@ function rotate(nums, k) {
 function rotate(nums, k) {
     return nums.unshift(...nums.splice(nums.length - k % nums.length));
 }
+
+function spiralOrder(matrix) {
+    let direction = '->';
+    let left = 0;
+    let top = 0;
+    let right = matrix[0].length - 1;
+    let bottom = matrix.length - 1;
+    let arr = [];
+    let count = 0;
+    while(arr.length < matrix.length * matrix[0].length && count < 30) {
+        if(direction === '->') {
+            for(let i = left; i <= right; i++) {
+                arr.push(matrix[top][i]);
+                if(i === right) {
+                    direction = 'v';
+                    top += 1;    
+                }
+            }
+        } else if(direction === 'v') {
+            for(let i = top; i <= bottom; i++) {
+                arr.push(matrix[i][right])
+                if(i === bottom) {
+                    direction = '<-';
+                    right -= 1;
+                }
+            }
+        } else if(direction === '<-') {
+            for(let i = right; i >= left; i--) {
+                arr.push(matrix[bottom][i]);
+                if(i === left) {
+                    bottom -= 1;
+                    direction = '->'
+                }
+            }
+        } 
+        count++;
+    };
+    return arr;
+}
