@@ -940,4 +940,7 @@ var reverseString = function(s) {
     }
     return s
   };
-  
+
+  var singleNumber = function(nums) {
+    return nums.filter(x => nums.indexOf(x) === nums.lastIndexOf(x))[0];
+};
