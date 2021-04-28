@@ -944,3 +944,15 @@ var reverseString = function(s) {
   var singleNumber = function(nums) {
     return nums.filter(x => nums.indexOf(x) === nums.lastIndexOf(x))[0];
 };
+
+var singleNumber = function(nums) {
+    let seen = new Set();
+    for(let n of nums) {
+        if(seen.has(n)) {
+            seen.delete(n)
+        } else {
+            seen.add(n)
+        }
+    }
+    return seen.values().next().value;
+};
