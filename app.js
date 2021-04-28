@@ -908,3 +908,24 @@ function serialize(root) {
   
     return go();
   }
+
+  var longestConsecutive = function(nums) {
+    if(!nums || !nums.length) return 0;
+    
+    let max = 0;
+    let set = new Set(nums);
+    
+    for(let n of set) {
+        if(set.has(n - 1))continue;
+        
+        let currNum = n;
+        let currMax = 1;
+        
+        while(set.has(currNum + 1)) {
+            currNum++;
+            currMax++;
+        };
+        max = Math.max(currMax, max);
+    }
+    return max;
+};
