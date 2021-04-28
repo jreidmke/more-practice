@@ -983,3 +983,10 @@ var maxProfit = function(prices) {
     };
     return profit;
 };
+
+function isAnagram(s, t) {
+    const obj = {};
+    s.split('').map(c => obj[c] = obj[c] ? obj[c] + 1 : 1);
+    t.split('').map(c => obj[c] = obj[c] ? obj[c] - 1 : -1);
+    return Object.keys(obj).every(k => obj[k] === 0);
+}
