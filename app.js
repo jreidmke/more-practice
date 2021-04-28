@@ -990,3 +990,14 @@ function isAnagram(s, t) {
     t.split('').map(c => obj[c] = obj[c] ? obj[c] - 1 : -1);
     return Object.keys(obj).every(k => obj[k] === 0);
 }
+
+var mergeTwoLists = function(l1, l2) {
+    if(!l1 || !l2) return (l1 ? l1 : l2);
+    if(l1.val < l2.val) {
+        l1.next = mergeTwoLists(l1.next, l2);
+        return l1
+    } else {
+        l2.next = mergeTwoLists(l1, l2.next);
+        return l2
+    }
+};
