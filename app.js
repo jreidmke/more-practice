@@ -969,3 +969,17 @@ var sortedArrayToBST = function(nums) {
     node.right = sortedArrayToBST(nums.slice(mid + 1));
     return node;
 };
+
+var maxProfit = function(prices) {
+    let profit = 0;
+    
+    for(let i = 0; i < prices.length; i++) {
+        let prev = prices[i - 1];
+        let curr = prices[i];
+        
+        if(curr > prev) {
+            profit += curr - prev;
+        };
+    };
+    return profit;
+};
