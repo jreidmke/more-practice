@@ -1096,3 +1096,9 @@ function exist(board, word) {
     };
     return arr.join('');
   }
+
+  function subtractProductAndSum(n) {
+    let arr = n.toString().split('')
+    return arr.reduce((a, b) => a * b) - arr.reduce((a, b) => parseInt(a) + parseInt(b)); 
+  }
+  
