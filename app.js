@@ -1088,3 +1088,11 @@ function exist(board, word) {
     };
     return arr;
   };
+
+  function restoreString(s, indices) {
+    let arr = Array(s.length);
+    for(let i = 0; i < s.length; i++) {
+      arr[indices[i]] = s[i]
+    };
+    return arr.join('');
+  }
