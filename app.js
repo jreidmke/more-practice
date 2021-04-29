@@ -1107,3 +1107,29 @@ function exist(board, word) {
     if(num % 2 === 0) return numberOfSteps(num / 2, count + 1);
     return numberOfSteps(num - 1, count + 1);
 };
+
+var decompressRLElist = function(nums) {
+    let arr = [];
+    for(let i = 0; i < nums.length; i+=2) {
+      for(let j = 0; j < nums[i]; j++) {
+        arr.push(nums[i + 1]);
+      };
+    };
+    return arr 
+  };
+
+  var getKth = function(low, hi, k) {
+    const range = Array.from(Array(hi - low + 1).keys(), n => n + low);
+    let obj = {};
+    for(let n of range) {
+      obj[n] = math(n)
+    };
+    let arr = (Object.entries(obj)).sort((a, b) => a[1] - b[1]);
+    return parseInt(arr[k - 1][0]);
+  };
+  
+  function math(n, count=0) {
+    if(n === 1) return count;
+    if(n % 2 === 0) return math(n / 2, count + 1);
+    return math((3 * n) + 1, count + 1);
+  }
