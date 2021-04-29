@@ -1007,3 +1007,35 @@ var climbStairs = function(n, memo={1: 1, 2: 2}) {
     memo[n] = climbStairs(n - 1, memo) + climbStairs(n - 2, memo);
     return memo[n]
 };
+
+function exist(board, word) {
+    if(!board.length) return false;
+  
+    const h = board.length;
+    const w = board[0].length;
+    const dirs = [[-1, 0], [0, 1], [1, 0], [0, -1]];
+  
+    function dfs(x, y, wordIdx) {
+      if(board[x][y] !== word[wordIdx]) return false;
+      if(wordIdx === word.length - 1) return true;
+  
+      board[x][y] = 'x';
+  
+      for(const [dx, dy] of dirs) {
+        const i = x + dx;
+        const j = y + dy;
+        if(i >= 0 && i < h && j >= 0 && j < w) {
+          if(dfs(i, j, wordIdx + 1)) return true;
+        }
+      }
+      board[x][y] = word[wordIdx];
+      return false;
+    };
+  
+    for(let i = 0; i < h; i++) {
+      for(let j = 0; j < w; j++) {
+        if(dfs(i, j, 0)) return true;
+      }
+    };
+    return false;
+  }
