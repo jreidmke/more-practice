@@ -1058,3 +1058,11 @@ function exist(board, word) {
   function kidsWithCandies(candies, extraCandies) {
     return candies.map(c => c + extraCandies >= Math.max(...candies) ? true : false);
   };
+
+  function maxWealth(accounts) {
+      let max = 0;
+      for(act of accounts) {
+          max = Math.max(max, act.reduce((a, b) => a + b));
+      };
+      return max;
+  }
