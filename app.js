@@ -1101,4 +1101,9 @@ function exist(board, word) {
     let arr = n.toString().split('')
     return arr.reduce((a, b) => a * b) - arr.reduce((a, b) => parseInt(a) + parseInt(b)); 
   }
-  
+
+  var numberOfSteps = function(num, count=0) {
+    if(!num) return count;
+    if(num % 2 === 0) return numberOfSteps(num / 2, count + 1);
+    return numberOfSteps(num - 1, count + 1);
+};
