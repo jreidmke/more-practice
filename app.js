@@ -1066,3 +1066,14 @@ function exist(board, word) {
       };
       return max;
   }
+
+  function numIdenticalPairs(nums) {
+    let map = {};
+    let count = 0;
+    for(let n of nums) {
+      !map[n] ? map[n] = 1 : count += map[n]++
+      console.log(map)
+      console.log(count)
+    };
+    return count;
+  }
