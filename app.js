@@ -1054,3 +1054,7 @@ function exist(board, word) {
     };
     return count;
   };
+
+  function kidsWithCandies(candies, extraCandies) {
+    return candies.map(c => c + extraCandies >= Math.max(...candies) ? true : false);
+  };
