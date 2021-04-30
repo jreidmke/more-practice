@@ -1142,3 +1142,19 @@ var decompressRLElist = function(nums) {
     while(n % 5 === 0) n /= 5;
     return 1 === n;
 };
+
+function isPowerOfFour(n) {
+    let left = 0;
+    let right = n;
+    while(left <= right) {
+      let mid = Math.floor((left + right) / 2);
+      if(4 ** mid < n) {
+        left = mid + 1;
+      } else if(4 ** mid > n) {
+        right = mid - 1;
+      } else {
+        return true;
+      }
+    };
+    return false;
+  };
