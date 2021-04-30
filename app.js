@@ -1133,3 +1133,12 @@ var decompressRLElist = function(nums) {
     if(n % 2 === 0) return math(n / 2, count + 1);
     return math((3 * n) + 1, count + 1);
   }
+
+
+  var isUgly = function(n) {
+    if(n <= 0) return false;
+    while(n % 2 === 0) n /= 2;
+    while(n % 3 === 0) n /= 3;
+    while(n % 5 === 0) n /= 5;
+    return 1 === n;
+};
