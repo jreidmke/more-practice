@@ -1238,3 +1238,25 @@ function isPerfectSquare(num) {
     nums.sort((a, b) => a - b);
     return length >= 3 ? nums[nums.length - length] : nums[nums.length - 1];
   }
+
+  function validPalindrome(s) {
+    if(palindrome(s)) return true;
+    if(!Array.isArray(s)) s = s.split('')
+    let n = s.length;
+    for(let i = 0; i < n; i++) {
+      let temp = [...s.slice(0, i), ...s.slice(i + 1)];
+      if(palindrome) return true;
+    };
+    return false;
+  };
+  
+  function palindrome(s) {
+    let left = 0;
+    let right = s.length - 1;
+    while(left < right) {
+      if(s[left] !== s[right]) return false;
+      left++;
+      right--;
+    };
+    return true;
+  }
