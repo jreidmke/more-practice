@@ -1158,3 +1158,20 @@ function isPowerOfFour(n) {
     };
     return false;
   };
+
+  var mostCommonWord = function(paragraph, banned) {
+    paragraph = paragraph.replace(/[^A-Za-z]/g, " ").split(" ");
+    let currMax = 1;
+    let maxEl;
+    let obj = {};
+    for(let w of paragraph) {
+        w = w.toLowerCase();
+        if(!w.length || w === banned) continue;
+        !obj[w] ? obj[w] = 1 : obj[w]++;
+        if(obj[w] > currMax) {
+            currMax = obj[w];
+            maxEl = w;
+        }
+    };
+    return maxEl;
+};
