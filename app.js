@@ -1190,3 +1190,7 @@ function reverseVowels(s) {
     };
     return s.join('');
   };
+
+  function addToArrayForm(num, k) {
+    return (parseInt(num.join('')) + k).toString().split('')
+  };
