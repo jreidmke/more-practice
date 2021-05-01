@@ -1232,3 +1232,9 @@ function isPerfectSquare(num) {
     }
     return s.join('');
   }
+
+  function thirdMax(nums) {
+    let length = nums.length;
+    nums.sort((a, b) => a - b);
+    return length >= 3 ? nums[nums.length - length] : nums[nums.length - 1];
+  }
