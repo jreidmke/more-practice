@@ -1194,3 +1194,13 @@ function reverseVowels(s) {
   function addToArrayForm(num, k) {
     return (parseInt(num.join('')) + k).toString().split('')
   };
+
+  var isPowerOfTwo = function(n) {
+    let multi = 1;
+    
+    while(multi < n) {
+        multi *= 2;
+    };
+    
+    return multi === n;
+};
