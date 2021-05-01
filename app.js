@@ -1175,3 +1175,18 @@ function isPowerOfFour(n) {
     };
     return maxEl;
 };
+
+function reverseVowels(s) {
+    let left = 0;
+    let right = s.length - 1;
+    s = s.split('');
+    let vowels = new Set(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']);
+    while(left < right) {
+      while(left < right && !vowels.has(s[left])) left++;
+      while(left < right && !vowels.has(s[right])) right--;
+      [s[left], s[right]] = [s[right], s[left]];
+      left++;
+      right--;
+    };
+    return s.join('');
+  };
