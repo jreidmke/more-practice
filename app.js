@@ -1204,3 +1204,20 @@ function reverseVowels(s) {
     
     return multi === n;
 };
+
+function isPerfectSquare(num) {
+    let left = 0;
+    let right = num;
+    while(left <= right) {
+      let mid = Math.floor((left + right) / 2);
+      let prod = mid * mid;
+      if(prod < num) {
+        left = mid + 1;
+      } else if(prod > num) {
+        right = mid - 1;
+      } else {
+        return true;
+      }
+    }
+    return false;
+  };
