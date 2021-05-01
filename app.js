@@ -1221,3 +1221,14 @@ function isPerfectSquare(num) {
     }
     return false;
   };
+
+  function licenseKeyFormatting(s, k) {
+    s = s.replace(/[^A-Za-z0-9]/g, "").split('')
+    let count = 1;
+    for(let i = s.length - 1; i >= 0; i--) {
+      s[i] = s[i].toUpperCase();
+      if(count % k === 0 && i > 0) s.splice(i, 0, '-');    
+      count++;
+    }
+    return s.join('');
+  }
