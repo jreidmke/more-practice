@@ -1390,3 +1390,42 @@ function checkArithmeticSubarrays(nums, left, right) {
 
 checkArithmeticSubarrays([-12,-9,-3,-12,-6,15,20,-25,-20,-15,-10], [0,1,6,4,8,7], [4,4,9,7,9,10]);
 
+function numberOfArithmeticSlices(nums) {
+    let slow = 0;
+    let count = 0;
+    for(let fast = 2; fast < nums.length; fast++) {
+        let slice = nums.slice(slow, fast + 1);
+        
+        let diff = slice[1] - slice[0];
+
+        console.log(slice)
+
+        for(let i = 2; i < slice.length; i++) {
+            let diff2 = slice[i] - slice[i - 1];
+            if(diff !== diff2) break;
+            if(i === slice.length - 1) count++;
+        };
+
+        console.log('fast', fast)
+        console.log('num', nums.length - 1)
+        if(fast === nums.length - 1) {
+            console.log("HE")
+            slow++;
+        };
+    };
+    return count;
+};
+
+function maxIceCream(costs, coins) {
+    costs.sort((a, b) => a - b);
+    let num = 0;
+    for(let c of costs) {
+        if(coins >= c) {
+            num++;
+            coins -= c;
+        } else {
+            break;
+        }
+    };
+    return num;
+};
