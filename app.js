@@ -1260,3 +1260,26 @@ function isPerfectSquare(num) {
     };
     return true;
   }
+
+
+  function trap(nums) {
+    let max = -Infinity; //first get max height to know how many times to iterate over slices
+    for(let i = 0; i < nums.length; i++) {
+      max = Math.max(max, nums[i])
+    };
+    let count = 0;
+  
+    for(let i = 0; i < max; i++) {
+      let slice = nums.map(x => x > i ? 1 : 0);
+      let left = 0;
+      let right = nums.length - 1;
+      while(!slice[left]) left++;
+      while(!slice[right]) right--;
+      if(left === right) continue;
+      for(let i = left; i < right; i++) {
+        count += 1 - slice[i];
+      }
+    }
+  
+    return count;
+  }
