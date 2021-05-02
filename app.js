@@ -1287,3 +1287,72 @@ function isPerfectSquare(num) {
   
     return count;
   }
+
+
+function rainwater(nums) {
+    let n = nums.length;
+    let leftWall = Array(n).fill(0);
+    let rightWall = Array(n).fill(0);
+
+    let leftMax = 0
+    for(let i = 0; i < n; i++) {
+        leftWall[i] = leftMax;
+        leftMax = Math.max(leftMax, nums[i]);
+    };
+
+    let rightMax = 0;
+    for(let i = n - 1; i >= 0; i--) {
+        rightWall[i] = rightMax;
+        rightMax = Math.max(rightMax, nums[i]);
+    };
+
+    let total = 0;
+    for(let i = 0; i < n; i++) {
+        let currEl = nums[i];
+        let low = Math.min(leftWall[i], rightWall[i]);
+        if(low > currEl) {
+            total += low - currEl;
+        };
+    };
+    return total;
+}
+
+function trappingWaterTwo(nums) {
+    let left = 0;
+    let right = nums.length - 1;
+
+    let leftMax = nums[left];
+    let rightMax = nums[right];
+    let count = 0;
+
+    while(left < right) {
+        leftMax = Math.max(leftMax, nums[left]);
+
+        if(nums[left] < leftMax) count += leftMax - nums[left];
+
+        rightMax = Math.max(rightMax, nums[right]);
+
+        if(nums[right] < rightMax) res += rightMax - nums[right];
+
+        nums[left] < nums[right] ? left++ : right--
+    };
+    return count;
+}
+
+function maxArea(nums) {
+    let count = 0;
+    let left = 0;
+    let right = nums.length - 1;
+
+    while (left < right) {
+		let smallestSide = Math.min(height[left], height[right]);
+		let area = (right - left) * smallestSide;
+
+		if (area > result) result = area;
+
+		if (height[left] < height[right]) left++;
+		else right--;
+	}
+
+    return count;
+}
