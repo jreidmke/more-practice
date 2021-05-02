@@ -1368,3 +1368,25 @@ function minOperations(boxes) {
     };
     return arr;
 };
+
+function checkArithmeticSubarrays(nums, left, right) {
+    let arr = [];
+    for(let i = 0; i < right.length; i++) {
+
+        let slice = nums.slice(left[i], right[i] + 1).sort((a, b) => a - b);
+
+        let diff = slice[1] - slice[0];
+        for(let j = 1; j < slice.length; j++) {
+            let diff2 = slice[j] - slice[j - 1];
+            if(diff !== diff2) {
+                arr.push(false);
+                break;
+            };
+            if(j === slice.length - 1) arr.push(true);
+        }
+    };
+    return arr;
+};
+
+checkArithmeticSubarrays([-12,-9,-3,-12,-6,15,20,-25,-20,-15,-10], [0,1,6,4,8,7], [4,4,9,7,9,10]);
+
