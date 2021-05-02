@@ -1340,19 +1340,31 @@ function trappingWaterTwo(nums) {
 }
 
 function maxArea(nums) {
-    let count = 0;
     let left = 0;
     let right = nums.length - 1;
 
-    while (left < right) {
-		let smallestSide = Math.min(height[left], height[right]);
-		let area = (right - left) * smallestSide;
+    let count = 0;
 
-		if (area > result) result = area;
+    while(left < right) {
+        let smallestWall = Math.min(nums[right], nums[left]);
 
-		if (height[left] < height[right]) left++;
-		else right--;
-	}
+        let area = smallestWall * (right - left);
+        count = Math.max(area, count);
 
+        if(nums[left] < nums[right]) left++;
+        else right--;
+    };
     return count;
-}
+};
+
+function minOperations(boxes) {
+    let arr = Array(boxes.length).fill(0);
+    for(let i = 0; i < boxes.length; i++) {                
+        for(let j = 0; j < boxes.length; j++) {
+            if(parseInt(boxes[j]) && j !== i) {
+                arr[i] += Math.abs(j - i);
+            }
+        }
+    };
+    return arr;
+};
