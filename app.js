@@ -1267,17 +1267,21 @@ function isPerfectSquare(num) {
     for(let i = 0; i < nums.length; i++) {
       max = Math.max(max, nums[i])
     };
-    let count = 0;
+    let count = 0; //init count
   
-    for(let i = 0; i < max; i++) {
-      let slice = nums.map(x => x > i ? 1 : 0);
-      let left = 0;
-      let right = nums.length - 1;
-      while(!slice[left]) left++;
-      while(!slice[right]) right--;
-      if(left === right) continue;
-      for(let i = left; i < right; i++) {
-        count += 1 - slice[i];
+    for(let i = 0; i < max; i++) { //iterate over array to create slices
+      let slice = nums.map(x => x > i ? 1 : 0); //slices created by comparing to iterator. > i = 1, < i = 0;
+      
+      let left = 0; //idx var used to capture left most wall
+      let right = nums.length - 1; //idx var used to capture right most wall
+
+      while(left <= right && !slice[left]) left++; //while curr idx vals are 0, move to find walls
+      while(left <= right && !slice[right]) right--;
+      if(left === right) continue; //if walls are the same, no water capture
+
+
+      for(let i = left; i < right; i++) { //iterate from left wall to right
+        count += 1 - slice[i]; //add diff to count
       }
     }
   
