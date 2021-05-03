@@ -1460,3 +1460,27 @@ function arrayPairSum(nums) {
     };
     return sum;
 };
+
+var judgeCircle = function(moves) {
+    let obj = {
+        "L": 0,
+        "U": 0
+    };
+    for(let m of moves) {
+        switch(m) {
+            case "L":
+                obj["L"]++;
+                break;
+            case "U":
+                obj["U"]++;
+                break;
+            case "R":
+                obj["L"]--;
+                break;
+            case "D":
+                obj["U"]--;
+                break;
+        };
+    };
+    return Object.values(obj).every(n => !n);
+};
