@@ -1438,3 +1438,16 @@ function uniqueOccurrences(nums) {
     let set = new Set(Object.values(obj));
     return set.size === Object.values(obj).length;
 }
+
+function sumUnique(nums) {
+    let obj = {};
+    for(let n of nums) {
+        !obj[n] ? obj[n] = 1 : obj[n]++
+    };
+    let sum = 0;
+    for(let n in obj) {
+        if(obj[n] > 1) continue;
+        sum += parseInt(n);
+    };
+    return sum;
+};
