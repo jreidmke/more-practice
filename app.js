@@ -1429,3 +1429,12 @@ function maxIceCream(costs, coins) {
     };
     return num;
 };
+
+function uniqueOccurrences(nums) {
+    let obj = {};
+    for(let n of nums) {
+        !obj[n] ? obj[n] = 1 : obj[n]++;
+    };
+    let set = new Set(Object.values(obj));
+    return set.size === Object.values(obj).length;
+}
