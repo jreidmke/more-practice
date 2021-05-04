@@ -1669,3 +1669,19 @@ const validPalindrome = (s) => {
 const cut = (s, i) => s.substr(0, i) + s.substr(i + 1);
 
 const isPalindrome = (s) => s === s.split('').reverse().join('');
+
+function mergeAlternately(str1, str2) {
+    let n = str1.length > str2.length ? str1.length : str2.length;
+    let s = ""
+    for(let i = 0; i < n; i++) {
+        if(str1[i] === undefined) {
+            return s += str2.slice(i);
+        } else if(str2[i] === undefined) {
+            return s += str1.slice(i)
+        } else {
+            s += str1[i]
+            s += str2[i]
+        }
+    };
+    return s;
+}
