@@ -1497,3 +1497,16 @@ function findTheDifference(s, t) {
     }
     return Object.keys(obj)[0];
 };
+
+function singleNumber(nums) {
+    let obj = {};
+    for(let n of nums) {
+        if(obj[n]) {
+            obj[n]++;
+            if(obj[n] === 3) delete obj[n];
+        } else {
+            obj[n] = 1;
+        }
+    };
+    return parseInt(Object.keys(obj)[0]);
+};
