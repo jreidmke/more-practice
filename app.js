@@ -1510,3 +1510,12 @@ function singleNumber(nums) {
     };
     return parseInt(Object.keys(obj)[0]);
 };
+
+var singleNumber = function(nums) {
+    let seen = new Set();
+    for(let n of nums) {
+        if(!seen.has(n)) seen.add(n);
+        else seen.delete(n);
+    };
+    return Array.from(seen);
+};
