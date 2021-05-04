@@ -1697,3 +1697,11 @@ function selfDividingNumbers(left, right) {
     };
     return res;
 }
+
+function checkPerfectNumber(num) {
+    let res = 0;
+    for(let i = 0; i <= num / 2; i++) {
+        if(num % i === 0) res += i;
+    };
+    return res === num
+};
