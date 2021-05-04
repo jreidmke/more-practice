@@ -1614,3 +1614,14 @@ function balancedStringSplit(s) {
     };
     return count;
 }
+
+function arrangeWords(text) {
+    text = text.split(' ').map(x => x.toLowerCase()).sort((a, b) => a.length - b.length)
+    let str = "";
+    for(let i = 0; i < text.length; i++) {
+        if(i === 0) str += text[0][0].toUpperCase() + text[0].slice(1)
+        else str += text[i]        
+        if(i !== text.length - 1) str += " "
+    }
+    return str;
+};
