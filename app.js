@@ -1593,3 +1593,24 @@ function countMatches(items, ruleKey, ruleValue) {
     }
     return count;
 };
+
+function balancedStringSplit(s) {
+    let balance = 0;
+
+    let left = 0;
+    let right = 0;
+    
+    let count = 0;
+
+    while(right < s.length) {
+        if(s[right] === "R") balance++;
+        else balance--;
+
+        if((left || right) && !balance) {
+            count++;
+            left = right + 1;
+        };
+        right++;
+    };
+    return count;
+}
