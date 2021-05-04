@@ -1633,3 +1633,39 @@ function pangram(sentence) {
     };
     return seen.size === 26
 };
+
+function isPalindrome(s) {
+    let l = 0;
+    let r = s.length - 1;
+    while(l < r) {
+        if(s[l] !== s[r]) return false;
+        r--;
+        l++;
+    };
+    return true;
+};
+
+function validPalindrome(s) {
+    if(isPalindrome(s)) return true;
+    if(!Array.isArray(s)) s = s.split('');
+    let temp = Array.from(s)
+    for(let i = 0; i < s.length; i++) {
+        let temp = [...s.slice(0, i), ...s.slice(i + 1)];
+        if(isPalindrome(temp)) return true;
+    }
+    return false;    
+};
+
+const validPalindrome = (s) => {
+    for (let i = 0, stop = s.length / 2; i < stop; i++) {
+        let j = s.length - i - 1
+        if (s[i] !== s[j]) {
+            return isPalindrome(cut(s, i)) || isPalindrome(cut(s, j))
+        }
+    }
+    return true
+};
+
+const cut = (s, i) => s.substr(0, i) + s.substr(i + 1);
+
+const isPalindrome = (s) => s === s.split('').reverse().join('');
