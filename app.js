@@ -1484,3 +1484,16 @@ var judgeCircle = function(moves) {
     };
     return Object.values(obj).every(n => !n);
 };
+
+
+function findTheDifference(s, t) {
+    let obj = {};
+    for(let i = 0; i < t.length; i++) {
+        !obj[t[i]] ? obj[t[i]] = 1 : obj[t[i]]++;
+    };
+    for(let w of s) {
+        obj[w]--;
+        if(obj[w] === 0) delete obj[w];
+    }
+    return Object.keys(obj)[0];
+};
