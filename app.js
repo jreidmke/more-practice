@@ -1566,3 +1566,17 @@ function permute(num, path, res, idx) {
     permute(num, [...path, num[idx]], res, idx + 1);
     permute(num, [...path], res, idx + 1);
 }
+
+function numOfSubarrays(arr) {
+    let res = [];
+    for(let i = 0; i < arr.length; i++) {
+        let path = [];
+        for(let j = i; j < arr.length; j++) {
+            path = [...path, arr[j]];
+            if(path.reduce((a, b) => a + b) % 2 !== 0) {
+                res.push(path)
+            }
+        };
+    };
+    return res.length;
+}
