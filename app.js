@@ -1550,3 +1550,19 @@ function isToeplitzMatrix(matrix) {
     };
     return true;
 }
+
+function subsets(num) {
+    let res = [];
+    permute(num, [], res, 0);
+    return res;
+};
+
+function permute(num, path, res, idx) {
+    if(num.length === idx) {
+        res.push(path);
+        return;
+    };
+
+    permute(num, [...path, num[idx]], res, idx + 1);
+    permute(num, [...path], res, idx + 1);
+}
