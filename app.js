@@ -1519,3 +1519,17 @@ var singleNumber = function(nums) {
     };
     return Array.from(seen);
 };
+
+function interpret(command) {
+    let s = "";
+    for(let i = 0; i < command.length; i++) {
+        if(command[i] === "G") {
+          s += "G";  
+        } else if(command[i] + command[i + 1] === "(a") {
+            s += "al";
+        } else if(command[i] + command[i + 1] === "()"){
+            s += "o";
+        } else continue; 
+    };
+    return s;
+};
