@@ -1685,3 +1685,15 @@ function mergeAlternately(str1, str2) {
     };
     return s;
 }
+
+function selfDividingNumbers(left, right) {
+    let res = [];
+    for(let i = left; i <= right; i++) {
+        let divisors = i.toString().split('');
+        for(let j = 0; j < divisors.length; j++) {
+            if(i % divisors[j] !== 0) break;
+            if(j === divisors.length - 1) res.push(i);
+        };
+    };
+    return res;
+}
