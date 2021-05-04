@@ -1533,3 +1533,11 @@ function interpret(command) {
     };
     return s;
 };
+
+function createTargetArray(nums, idx) {
+    let target = [];
+    for(let i = 0; i < nums.length; i++) {
+        target.splice(idx[i], 0, nums[i]);
+    }
+    return target;
+}
