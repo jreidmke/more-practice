@@ -1580,3 +1580,16 @@ function numOfSubarrays(arr) {
     };
     return res.length;
 }
+
+function countMatches(items, ruleKey, ruleValue) {
+    let dic = {
+        "type": 0,
+        "color": 1,
+        "name": 2
+    };
+    let count = 0;
+    for(let i of items) {
+        if(i[dic[ruleKey]] === ruleValue) count++;
+    }
+    return count;
+};
