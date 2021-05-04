@@ -1625,3 +1625,11 @@ function arrangeWords(text) {
     }
     return str;
 };
+
+function pangram(sentence) {
+    let seen = new Set();
+    for(let c of sentence) {
+        seen.add(c)
+    };
+    return seen.size === 26
+};
