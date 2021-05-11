@@ -1857,3 +1857,28 @@ function exist(board, word) {
     };
     return false;
 };
+
+function bfs(graph, root, target) {
+    let que = [root];
+    let visited = new Set();
+    let level = 0;
+
+    while(que.length) {
+        let n = que.length;
+        for(let i = 0; i < n; i++) {
+            const node = que.shift();
+            if(node === target) return level;
+            for(const n of get_neighbors(graph, node)) {
+                if(visited.has(n)) continue;
+                que.push(n);
+                visited.add(n);
+            }
+        };
+        level++;
+    };
+    return level;
+}
+
+function get_neighbors(graph, node) {
+    return graph[node];
+}
