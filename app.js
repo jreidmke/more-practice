@@ -1882,3 +1882,26 @@ function bfs(graph, root, target) {
 function get_neighbors(graph, node) {
     return graph[node];
 }
+
+
+function allAddens(n) {
+    let res = [];
+    let nums = Array.from(Array(n).keys(), n => n + 1);
+    permute(nums, n, [], res, 0);
+    return res
+};
+
+function permute(nums, remaining, path, res, idx) {
+    if(!remaining) {
+        res.push(Array.from(path));
+        return;
+    };
+
+    for(let i = idx; i < nums.length; i++) {
+        let n = nums[i];
+        if(remaining - n < 0) continue;
+        path.push(n);
+        permute(nums, remaining - n, path, res, i);
+        path.pop();
+    };
+};
