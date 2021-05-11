@@ -1905,3 +1905,18 @@ function permute(nums, remaining, path, res, idx) {
         path.pop();
     };
 };
+
+
+var maximumUnits = function(boxTypes, truckSize) {
+    boxTypes.sort((a, b) => b[1] - a[1]);
+    let max = 0;
+    for(let i = 0; i < boxTypes.length; i++) {
+        let currBox = boxTypes[i];
+        while(currBox[0] && truckSize) {
+            max += currBox[1];
+            truckSize--;
+            currBox[0]--;
+        }
+    };
+    return max;
+}
