@@ -1920,3 +1920,16 @@ var maximumUnits = function(boxTypes, truckSize) {
     };
     return max;
 }
+
+var slowestKey = function(releaseTimes, keysPressed) {
+    let max = releaseTimes[0];
+    let maxIdx = 0;
+    for(let i = 1; i < keysPressed.length; i++) {
+        let release = releaseTimes[i] - releaseTimes[i - 1];
+        if(release >= max) {
+            max = release;
+            maxIdx = i;
+        }
+    };
+    return keysPressed[maxIdx];
+};
