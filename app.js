@@ -1828,28 +1828,26 @@ function sortColors(nums) {
     }
   }
 
-  function exist(board, word) {
-    if(!board.length) return false;
 
-    const h = board.length;
-    const w = board[0].length;
-    const around = [[-1, 0], [0, 1], [1, 0], [0, -1]];
+function exist(board, word) {
+    let h = board.length; 
+    let w = board[0].length;
+    let coords = [[0, 1], [0, -1], [1, 0], [-1, 0]];
 
-    function dfs(x, y, wordIdx) {
-        if(board[x][y] !== word[wordIdx]) return false;
-        if(wordIdx === word.length - 1) return true;
+    function dfs(x, y, idx) {
+        if(board[x][y] !== word[idx]) return false;
+        if(idx === word.length - 1) return true;
 
-        board[x][y] = '*'//mark spot as seen
-        
-        for(const [dx, dy] of around) {
+        board[x][y] = "*";
+
+        for(let [dx, dy] of coords) {
             const i = x + dx;
             const j = y + dy;
             if(i >= 0 && i < h && j >= 0 && j < w) {
-                if(dfs(i, j, wordIdx + 1)) return true;
-            }
-        }
-
-        board[x][y] = word[wordIdx];
+                if(dfs(i, j, idx + 1)) return true;
+            };
+        };
+        board[x][y] = word[idx];
         return false;
     };
     for(let i = 0; i < h; i++) {
@@ -1858,4 +1856,4 @@ function sortColors(nums) {
         }
     };
     return false;
-}
+};
