@@ -1933,3 +1933,18 @@ var slowestKey = function(releaseTimes, keysPressed) {
     };
     return keysPressed[maxIdx];
 };
+
+var rearrangeBarcodes = function(barcodes) {
+    let slow = 0;
+    let fast = 1;
+    while(fast < barcodes.length) {
+        if(barcodes[slow] === barcodes[fast]) {
+            fast++;
+        } else {
+            [barcodes[slow], barcodes[fast]] = [barcodes[fast], barcodes[slow]];
+            slow += 2;
+            fast = slow + 1;
+        }
+    };
+    return barcodes
+};
