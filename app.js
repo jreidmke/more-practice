@@ -1941,10 +1941,37 @@ var rearrangeBarcodes = function(barcodes) {
         if(barcodes[slow] === barcodes[fast]) {
             fast++;
         } else {
+            slow++;
             [barcodes[slow], barcodes[fast]] = [barcodes[fast], barcodes[slow]];
-            slow += 2;
             fast = slow + 1;
         }
     };
     return barcodes
 };
+
+function rearrangeBarcodes(barcodes) {
+    let obj = {};
+    for(n of barcodes) {
+        !obj[n] ? obj[n] = 1 : obj[n]++;
+    };
+
+    let nums = Object.entries(obj).sort((a, b) => b[1] - a[1]).map(c => c[0]);
+
+    console.log(nums)
+
+    let res = Array(barcodes.length);
+    let idx = 0;
+
+
+    for(let n of nums) {
+        let count = obj[n];
+
+        while(count--) {
+            res[idx] = n;
+            idx += 2;
+            if(idx >= barcodes.length) idx = 1;
+        }
+    }
+    return res;
+}
+
