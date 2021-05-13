@@ -2030,3 +2030,16 @@ function wordLadder(start, target, wordList) {
     };
     return 0;
 }
+
+var slowestKey = function(releaseTimes, keysPressed) {
+    let max = releaseTimes[0];
+    let maxChar = keysPressed[0]
+    for(let i = 1; i < keysPressed.length; i++) {
+        let release = releaseTimes[i] - releaseTimes[i - 1];
+        if(release === max && keysPressed[i] > maxChar || release > max) {
+            max = release;
+            maxChar = keysPressed[i]
+        }
+    };
+    return maxChar;
+};
