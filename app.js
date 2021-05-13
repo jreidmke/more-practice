@@ -2112,3 +2112,16 @@ const numPairsDivisibleBy60 = (time) => {
     });
     return ans;
 };
+
+var topKFrequent = function(words, k) {
+    let obj = {};
+    for(let w of words) {
+        !obj[w] ? obj[w] = 1 : obj[w]++;
+    };
+    const arr = Object.keys(obj).sort((a, b) => {
+        let countCompare = obj[b] - obj[a];
+        if(countCompare == 0) return a.localeCompare(b);
+        else return countCompare;
+    })
+    return arr.slice(0, k);
+};
