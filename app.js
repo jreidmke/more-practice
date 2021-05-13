@@ -2067,3 +2067,36 @@ function findLucky(arr) {
     };
     return Math.max(...arr.filter(e => obj[e] === e), -1);
 }
+
+function splitPrimes(str) {
+    let res = [];
+    permute(str, [], res);
+    return res.length;
+};
+
+function permute(str, path, res) {
+    //pust to res
+    if(!str.length) {
+        res.push(Array.from(path));
+        return
+    }
+
+    //push to path;
+    for(let i = 1; i <= str.length; i++) {
+        let substr = str.slice(0, i);
+        if(isPrime(parseInt(substr)) && parseInt(substr) <= 1000 && substr[0] !== "0") {
+            path.push(substr);
+            permute(str.slice(i), path, res);
+            path.pop();
+        }
+    }
+}
+
+function isPrime(n) {
+    if(n === 1 || !n) return false;
+    if(n < 4) return true;
+    for(let i = 2; i <= n / 2; i++) {
+        if(n % i === 0) return false;
+    };
+    return true;
+}
