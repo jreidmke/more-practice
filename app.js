@@ -2005,3 +2005,28 @@ function wordsearch(board, word) {
     };
     return false;
 }
+
+const alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+function wordLadder(start, target, wordList) {
+    wordList = new Set(wordList);
+    let que = [start];
+    let steps = 0;
+    while(que.length) {
+        let n = que.length;
+        steps++
+        for(let i = 0; i < n; i++) {
+            const currWord = que.shift();
+            for(let j = 0; j < currWord.length; j++) {
+                for(let a of alphabet) {
+                    const testWord = currWord.slice(0, j) + a + currWord.slice(j + 1);
+                    if(!wordList.has(testWord)) continue;
+                    if(testWord === target) return steps;
+                    que.push(testWord);
+                    wordList.delete(testWord);
+                }
+            }
+        }
+    };
+    return 0;
+}
