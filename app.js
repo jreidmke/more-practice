@@ -2058,3 +2058,12 @@ function findMaxAverage(nums, k) {
     };
     return max / k;
 }
+
+function findLucky(arr) {
+    let obj = {};
+    let idx = -1;
+    for(let n of arr) {
+        !obj[n] ? obj[n] = 1 : obj[n]++
+    };
+    return Math.max(...arr.filter(e => obj[e] === e), -1);
+}
