@@ -2144,3 +2144,15 @@ var fourSumCount = function(A, B, C, D) {
     }
     return output;
 };
+
+function numSquares(n) {
+    const dp = [0];
+    
+    for(let i = 1; i <= n; i++) {
+        dp[i] = Number.POSITIVE_INFINITY;
+        for(let j = 1; j * j <= i; j++) {
+            dp[i] = Math.min(dp[i], dp[i-j*j] + 1);
+        }
+    }
+    return dp[n];
+}
