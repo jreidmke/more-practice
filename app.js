@@ -2273,3 +2273,14 @@ function numPairsDivisibleBy60(times) {
     });
     return count;
 }
+
+function twoSumUniquePairs(nums, target) {
+    let count = 0;
+    let used = new Set();
+    nums.forEach(x => {
+        const diff = target - x;
+        if(!used.has(x) && !used.has(diff)) count++;
+        used.add(x, diff);
+    });
+    return count;
+};
