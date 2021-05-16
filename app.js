@@ -2296,3 +2296,35 @@ function longestValidString(str) {
     };
     return longestSubstr;
 };
+
+var maxTurbulenceSize = function(arr) {
+    let left = 0;
+    let right = 1;
+    let longest = 0;
+    while(arr[0] === arr[1]) {
+        left++;
+        right++;
+    }
+    let start = arr[0] > arr[1] ? ">" : "<";
+    while(right <= arr.length) {
+        if(start === ">") {
+            if(arr[right] > arr[right + 1]) {
+                right++;
+                start = "<";
+            } else {
+                left = right;
+                right++
+            }
+        } else {
+            if(arr[right] < arr[right + 1]) {
+                right++;
+                start = ">"
+            } else {
+                left = right;
+                right++;
+            }
+        };
+        longest = Math.max(longest, right - left);
+    };
+    return longest
+};
