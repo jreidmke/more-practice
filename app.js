@@ -2242,3 +2242,34 @@ function countSmaller(nums) {
     };
     return nums;
 };
+
+function numPairsDivisibleBy60(times) {
+    let res = [];
+    permute(times, [], res, 0);
+    return res.length 
+};
+
+function permute(times, path, res, idx) {
+    //push to res
+    if(times.length === idx) {
+        if(path.length !== 2) return;
+        let check = (path.reduce((a, b) => a + b)) % 60;
+        if(!check) res.push(Array.from(path));
+        return;
+    }
+
+    permute(times, [...path, times[idx]], res, idx + 1);
+    permute(times, [...path], res, idx + 1);
+}
+
+function numPairsDivisibleBy60(times) {
+    let obj = {};
+    let count = 0;
+    times.forEach(x => {
+        const mod = x % 60;
+        const left = (60 - mod) % 60;
+        count += obj[left] ? obj[left] : 0;
+        obj[mod] = obj[mod] ? obj[mod] + 1 : 1;
+    });
+    return count;
+}
