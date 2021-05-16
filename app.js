@@ -2207,3 +2207,26 @@ function bfs(root, target_level, k, res) {
         }
     }
 }
+
+function wordLadder(begin, end, wordList) {
+    wordList = new Set(wordList);
+    let steps = 0;
+    let que = [begin];
+    while(que.length) {
+        steps++;
+        let n = que.length;
+        for(let i = 0; i < n; i++) {
+            let currWord = que.shift();
+            for(let j = 0; j < currWord.length; j++) {
+                for(let a of alpha) {
+                    let testWord = currWord.slice(0, j) + a + currWord.slice(j + 1);
+                    if(!wordList.has(testWord)) continue;
+                    if(testWord === end) return steps;
+                    que.push(testWord);
+                    wordList.delete(testWord);
+                };
+            };
+        };
+    };
+    return 0;
+}
