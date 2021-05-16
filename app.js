@@ -2276,11 +2276,23 @@ function numPairsDivisibleBy60(times) {
 
 function twoSumUniquePairs(nums, target) {
     let count = 0;
+    let numSet = new Set(nums);
     let used = new Set();
     nums.forEach(x => {
         const diff = target - x;
-        if(!used.has(x) && !used.has(diff)) count++;
+        if(!used.has(x) && !used.has(diff) && numSet.has(diff)) count++;
         used.add(x, diff);
     });
     return count;
+};
+
+function longestValidString(str) {
+    let longestSubstr = "";
+    let slow = 0;
+    for(let fast = 0; fast < str.length; fast += 2) {
+        if(str[fast] === str[fast - 2]) slow = fast;
+        let sub = str.slice(slow, fast + 2);
+        if(sub.length > longestSubstr.length) longestSubstr = sub;
+    };
+    return longestSubstr;
 };
