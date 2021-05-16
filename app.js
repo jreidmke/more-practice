@@ -2163,3 +2163,47 @@ function lowestCommonAncestor(root, p, q) {
     let resR = lowestCommonAncestor(root.right, p, q);
     return (resL && resR) ? root : (resL || resR);
 }
+
+function binary_tree_distance_k_nodes(root, target, k) {
+    let res = [];
+    if (root) {
+        const target_level = find_target(root, target);
+        bfs(root, target_level, k, res);
+    }
+    return res;
+}
+
+function find_target(root, target) {
+    let level = 0;
+    let que = [root];
+    while(que.length) {
+        level++
+        let n = que.length;
+        for(let i = 0; i < n; i++) {
+            const node = que.shift();
+            if(node === target) return level;
+            for(let c of [node.left, node.right]) {
+                if(c) que.push(c);  
+            };
+        };
+    };
+    return level;
+}
+
+function bfs(root, target_level, k, res) {
+    let level = 0;
+    let queue = [root];
+    while (queue.length > 0) {
+        const n = queue.length;
+        level++;
+        for (let i = 0; i < n; i++) {
+            const node = queue.shift();
+            if (Math.abs(target_level - level) === k) {
+                res.push(node);  // found node K away from target
+            }
+            for (const child of [node.left, node.right]) {
+                if (child) queue.push(child);
+            }
+        }
+    }
+}
