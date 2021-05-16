@@ -2230,3 +2230,15 @@ function wordLadder(begin, end, wordList) {
     };
     return 0;
 }
+
+function countSmaller(nums) {
+    for(let i = 0; i < nums.length; i++) {
+        let count = 0;
+        let num = nums[i];
+        for(let j = i; j < nums.length; j++) {
+            if(nums[j] < num) count++;
+        };
+        nums[i] = count;
+    };
+    return nums;
+};
