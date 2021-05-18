@@ -2382,3 +2382,28 @@ function sumOddLengthSubarrays(arr) {
     };
     return sum;
 }
+
+var countNegatives = function(grid) {
+    let count = 0;
+    grid = grid.flat();
+    for(n of grid) {
+        if(n < 0) count++
+    };
+    return count;
+};
+
+function countNegatives(grid) {
+    let count = 0;
+    let inner = grid[0].length - 1;
+    let outer = grid.length - 1;
+    while(outer >= 0) {
+        if(grid[outer][inner] < 0) {
+            count++;
+            inner--;
+        } else if(grid[outer][inner] >= 0 || inner < 0) {
+            outer--;
+            inner = grid[0].length - 1;
+        }
+    }
+    return count;
+}
