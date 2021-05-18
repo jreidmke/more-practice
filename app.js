@@ -2370,3 +2370,15 @@ function bfs(root, targetLevel, k, res) {
         };
     };
 };
+
+function sumOddLengthSubarrays(arr) {
+    let sum = 0;
+    for(let i = 0; i < arr.length; i++) {
+        for(let j = i; j < arr.length; j++) {
+            for(let k = i; k <= j; k++) {
+                if((i - j) % 2 === 0) sum += arr[k];
+            }
+        }
+    };
+    return sum;
+}
