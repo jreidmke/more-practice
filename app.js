@@ -2328,3 +2328,45 @@ var maxTurbulenceSize = function(arr) {
     };
     return longest
 };
+
+function binary_tree_distance_k_nodes(root, target, k) {
+    let res = [];
+    if(root) {
+        const targetLevel = findLevel(root, target);
+        bfs(root, targetLevel, k, res);
+    };
+    return res;
+};
+
+function findLevel(root, target) {
+    const que = [root];
+    let level = 0;
+    while(que.length) {
+        level++;
+        let n = que.length;
+        for(let i = 0; i < n; i++) {
+            const node = que.shift();
+            if(node === target) return level;
+            for(let c of [node.left, node.right]) {
+                if(c) que.push(c);  
+            };
+        };
+    };
+    return level;
+};
+
+function bfs(root, targetLevel, k, res) {
+    const que = [root];
+    let level = 0;
+    while(que.length) {
+        level++;
+        let n = que.length;
+        for(let i = 0; i < n; i++) {
+            const node = que.shift();
+            if(Math.abs(targetLevel - level) === k) res.push(node);
+            for(let c of [node.left, node.right]) {
+                if(c) que.push(c);  
+            };
+        };
+    };
+};
