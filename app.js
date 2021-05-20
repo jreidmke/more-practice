@@ -2407,3 +2407,12 @@ function countNegatives(grid) {
     }
     return count;
 }
+
+function maxSlidingWindow(nums, k) {
+    let arr = [];
+    for(let i = 0; i < nums.length - k + 1; i++) {
+        const temp = nums.slice(i, i + k);
+        arr[i] = Math.max(...temp);
+    };
+    return arr;
+};
