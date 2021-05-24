@@ -2435,3 +2435,13 @@ function reverseWords2(s) {
     }
     return str.trim();
 }
+
+function heightChecker(h) {
+    let h2 = Array.from(h);
+    h = h.sort((a, b) => a - b);
+    let count = 0;
+    for(let i = 0; i < h.length; i++) {
+        if(h[i] !== h2[i]) count++;
+    };
+    return count;
+};
