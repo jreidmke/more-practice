@@ -2416,3 +2416,22 @@ function maxSlidingWindow(nums, k) {
     };
     return arr;
 };
+
+// Input: s = "Let's take LeetCode contest"
+// Output: "s'teL ekat edoCteeL tsetnoc"
+
+function reverseWords(s) {
+    return s.split('').reverse().join('').split(' ').reverse().join(' ')
+};
+
+function reverseWords2(s) {
+    s = s.split(' ')
+    let str = "";
+    for(let w of s) {
+        for(let i = w.length - 1; i >= 0; i--) {
+            str += w[i];
+            if(!i) str += " "
+        }
+    }
+    return str.trim();
+}
