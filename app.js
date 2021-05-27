@@ -2495,3 +2495,15 @@ function shortestToChar(s, c) {
     }
     return answer;
 };
+
+function shortestToChar(s, c) {
+    let arr = [];
+    let currCharIdx = s.indexOf(c);
+    for(let i = 0; i < s.length; i++) {
+        if(Math.abs(i - currCharIdx) > Math.abs(i - s.indexOf(c, i))) {
+            currCharIdx = s.indexOf(c, i);
+        }
+        arr[i] = Math.abs(i - currCharIdx);
+    };
+    return arr;
+};
