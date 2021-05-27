@@ -2467,3 +2467,15 @@ function rotate(matrix) {
     };
     return arr;
 };
+
+function rotate(matrix) {
+    const h = matrix.length;
+    const w = matrix[0].length;
+    for(let i = 0; i < h; i++) {
+        for(let j = i; j < w; j++) {
+            [matrix[i][j], matrix[j][i]] = [matrix[j][i], matrix[i][j]]
+        }
+        matrix[i].reverse();
+    };
+    return matrix
+};
