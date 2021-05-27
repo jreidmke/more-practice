@@ -2445,3 +2445,25 @@ function heightChecker(h) {
     };
     return count;
 };
+
+function rotate(matrix) {
+    const h = matrix.length;
+    const w = matrix[0].length;
+
+    const arr = []
+    
+    let x = h - 1;
+    let curr = 0;
+
+    while(x >= 0) {
+        let sub = [];
+        for(let i = w - 1; i >= 0; i--) {
+            let currEl = matrix[i][curr]
+            sub.push(currEl)
+        };
+        x--;
+        curr++;
+        arr.push(sub);
+    };
+    return arr;
+};
