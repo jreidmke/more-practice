@@ -2507,3 +2507,75 @@ function shortestToChar(s, c) {
     };
     return arr;
 };
+
+// // Example 1:
+
+// // Input: words = ["a","b","ba","bca","bda","bdca"]
+// // Output: 4
+// // Explanation: One of the longest word chain is "a","ba","bda","bdca".
+// // Example 2:
+
+// // Input: words = ["xbc","pcxbcf","xb","cxbc","pcxbc"]
+// // Output: 5
+
+function longestStrChain(words) {
+    words.sort((a, b) => a.length - b.length);
+
+    let count = 0;
+    let currWordIdx = 0;
+    let nextWordIdx = 1;
+
+    while(nextWordIdx < words.length) {
+        let currWord = words[currWordIdx];
+        let nextWord = words[nextWordIdx];
+
+        if(currWord.length + 1 !== nextWord.length) {
+            currWordIdx++;
+            nextWordIdx++;
+        };
+
+        console.log(currWord);
+        console.log(nextWord)
+
+
+        for(let i = 0; i < currWord.length; i++) {
+            let currCharIdx = currWord.indexOf(currWord[i]);
+            let nextCharIdx = nextWord.indexOf(currWord[i]);
+
+
+              
+            if(nextCharIdx - 1 <= currCharIdx <= nextCharIdx + 1) {
+                if(i === currWord.length - 1) count++;
+            }
+
+            console.log('c', count)
+        };
+
+        currWordIdx++;
+        nextWordIdx++;
+
+    }
+
+    return count;
+};
+
+longestStrChain(["a","b","ba","bca","bda","bdca"])
+
+function luckyNumbers(matrix) {
+    let mins = [];
+    let answer = [];
+    for(let sub of matrix) {
+        mins.push(Math.min(...sub))
+    };
+
+    let colIdx = 0;
+    while(colIdx < matrix[0].length) {
+        let max = -Infinity;
+        for(let i = 0; i < matrix.length; i++) {
+            max = Math.max(max, matrix[i][colIdx])
+        };
+        if(mins.indexOf(max) !== -1) answer.push(max)
+        colIdx++;
+    }
+    return answer;
+};
