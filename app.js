@@ -2479,3 +2479,19 @@ function rotate(matrix) {
     };
     return matrix
 };
+
+function shortestToChar(s, c) {
+    let arr = [];
+    let answer = [];
+    for(let i = 0; i < s.length; i++) {
+        if(s[i] === c) arr.push(i)
+    };
+
+    for(let i = 0; i < s.length; i++) {
+        for(let idx of arr) {
+            if(answer[i] == null) answer[i] = Math.abs(idx - i);
+            else answer[i] = Math.min(answer[i], Math.abs(idx - i))
+        }
+    }
+    return answer;
+};
