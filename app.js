@@ -2599,3 +2599,15 @@ function relativeSortArray(arr1, arr2) {
     };
     return [...arr1.slice(0, currIdx), ...remaining];
 }
+
+function findMedianSortedArrays(nums1, nums2) {
+    let big = [...nums1, ...nums2].sort((a, b) => a - b);
+    if(big.length % 2 === 0) {
+        let n1 = big[(big.length / 2) - 1];
+        let n2 = big[(big.length / 2)];
+        return (n1 + n2) / 2;
+    } else {
+        return big[Math.floor(big.length / 2)]
+    }
+    return big;
+}
