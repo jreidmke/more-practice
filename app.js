@@ -2579,3 +2579,23 @@ function luckyNumbers(matrix) {
     }
     return answer;
 };
+
+function relativeSortArray(arr1, arr2) {
+    let obj = {};
+    let newArr = [];
+    let remaining = arr1.filter(x => arr2.indexOf(x) === -1).sort((a, b) => a - b);
+    for(let n of arr1) {
+        !obj[n] ? obj[n] = 1 : obj[n]++
+    };
+    let posIdx = 0;
+    let currIdx = 0;
+    while(posIdx < arr2.length) {
+        while(obj[arr2[posIdx]] > 0) {
+            arr1[currIdx] = arr2[posIdx];
+            currIdx++;
+            obj[arr2[posIdx]]--
+        };
+        posIdx++;
+    };
+    return [...arr1.slice(0, currIdx), ...remaining];
+}
