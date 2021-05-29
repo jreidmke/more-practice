@@ -2631,3 +2631,17 @@ function minPathSum(grid) {
     };
     return grid[endX][endY]
 };
+
+const uniquePaths = (m, n) => {
+    return helper(m, n, 1, 1);
+};
+
+const helper = (m, n, row, col) => {
+    if(row === m && col === n) return 1;
+    if(row > m || col > n) return 0;
+    
+    const pathsRight = helper(m, n, row, col + 1);
+    const pathsDown = helper(m, n, row + 1, col);
+    
+    return pathsRight + pathsDown;
+};
