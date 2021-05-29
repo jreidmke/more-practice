@@ -2612,22 +2612,22 @@ function findMedianSortedArrays(nums1, nums2) {
     return big;
 }
 
-var minPathSum = function(grid) {
-    const i = grid.length - 1
-    const j = grid[0].length - 1
-    
-    for(let k = 0; k <= i; ++k) {
-        for(let l = 0; l <= j; ++l) {
-            if(k > 0 && l > 0)
-                grid[k][l] = Math.min(grid[k][l] + grid[k][l - 1], grid[k - 1][l] + grid[k][l])
-            else if(k > 0 || l > 0) {
-                if(l > 0)
-                    grid[k][l] += grid[k][l - 1]
-                else
-                    grid[k][l] += grid[k - 1][l]
-                }   
+function minPathSum(grid) {
+    let endX = grid.length - 1;
+    let endY = grid[0].length - 1;
+
+    for(let y = 0; y <= endY; y++) {
+        for(let x = 0; x <= endX; x++) {
+            if(y && x) {
+                grid[x][y] = Math.min(grid[x][y] + grid[x - 1][y], grid[x][y] + grid[x][y - 1]);
+            } else if(x || y) {
+                if(x) {
+                    grid[x][y] += grid[x - 1][y]
+                } else {
+                    grid[x][y] += grid[x][y - 1]
+                }
+            }
         }
-    }
-    
-    return grid[i][j]
+    };
+    return grid[endX][endY]
 };
