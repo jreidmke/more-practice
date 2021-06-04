@@ -2663,3 +2663,22 @@ function coinChange(coins, amount) {
 };
 
 coinChange([1], 0)
+
+function coinChange(coins, amount) {
+    coins.sort((a, b) => a - b);
+    let count = 0;
+    let left = coins.length - 1;
+    let remaining = amount;
+    while(remaining > 0) {
+        let num = coins[left];
+        if(left === 0 && remaining - num < 0) {
+            return -1;
+        } else if(remaining - num < 0) {
+            left--;
+        } else {
+            remaining -= num;
+            count++;
+        }
+    };
+    return count;
+};
