@@ -2645,3 +2645,21 @@ const helper = (m, n, row, col) => {
     
     return pathsRight + pathsDown;
 };
+
+function coinChange(coins, amount) {
+    coins.sort((a, b) => a - b);
+    let count = 0;
+    function helper(remaining) {
+        if(remaining === 0) return count;
+        for(let i = coins.length - 1; i >= 0; i--) {
+            let num = coins[i];
+            if(remaining - num < 0) continue;
+            count++;
+            return helper(remaining - num);
+        };
+    };
+    helper(amount)
+    return count
+};
+
+coinChange([1], 0)
