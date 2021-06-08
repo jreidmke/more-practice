@@ -1019,7 +1019,7 @@ function exist(board, word) {
       if(board[x][y] !== word[wordIdx]) return false;
       if(wordIdx === word.length - 1) return true;
   
-      board[x][y] = 'x';
+      board[x][y] = '*';
   
       for(const [dx, dy] of dirs) {
         const i = x + dx;
@@ -1245,7 +1245,7 @@ function isPerfectSquare(num) {
     let n = s.length;
     for(let i = 0; i < n; i++) {
       let temp = [...s.slice(0, i), ...s.slice(i + 1)];
-      if(palindrome) return true;
+      if(palindrome(temp)) return true;
     };
     return false;
   };
